@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Blue Star - Online Store</title>
+  <style>
+    :root {
+      --bg-color: #ffffff;
+      --text-color: #000000;
+      --primary-color: #007bff;
+    }
+
+    body.dark-mode {
+      --bg-color: #121212;
+      --text-color: #ffffff;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    header {
+      background-color: var(--primary-color);
+      padding: 20px;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    header h1 {
+      margin: 0;
+    }
+
+    nav a {
+      color: white;
+      margin: 0 10px;
+      text-decoration: none;
+    }
+
+    .hero {
+      background: url('https://via.placeholder.com/1500x400') no-repeat center center/cover;
+      height: 300px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      text-shadow: 1px 1px 5px #000;
+    }
+
+    .hero h2 {
+      font-size: 3rem;
+    }
+
+    .products {
+      padding: 40px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .product {
+      border: 1px solid #ccc;
+      padding: 15px;
+      text-align: center;
+      background: #f9f9f9;
+      border-radius: 10px;
+    }
+
+    .product img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+
+    .product button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    .slider {
+      overflow: hidden;
+      width: 100%;
+      margin: 20px 0;
+    }
+
+    .slider img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .contact {
+      padding: 40px;
+      background-color: #eee;
+    }
+
+    .contact form {
+      max-width: 500px;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .contact input, .contact textarea {
+      margin-bottom: 15px;
+      padding: 10px;
+    }
+
+    .dark-toggle {
+      background: white;
+      color: black;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0; top: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background: white;
+      padding: 20px;
+      width: 300px;
+      border-radius: 10px;
+    }
+
+    footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+
+    @media (max-width: 600px) {
+      header {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Blue Star</h1>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#products">Products</a>
+      <a href="#contact">Contact</a>
+      <a href="#" onclick="openModal('login')">Login</a>
+      <a href="#" onclick="openModal('register')">Register</a>
+      <button onclick="toggleDarkMode()" class="dark-toggle">Toggle Dark Mode</button>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h2>Welcome to Blue Star Store</h2>
+  </section>
+
+  <section class="slider">
+    <img src="https://via.placeholder.com/1500x300" alt="Slider Image" />
+  </section>
+
+  <section class="products" id="products">
+    <div class="product">
+      <img src="https://via.placeholder.com/250" alt="Product 1">
+      <h3>Product 1</h3>
+      <p>$19.99</p>
+      <button>Add to Cart</button>
+    </div>
+    <div class="product">
+      <img src="https://via.placeholder.com/250" alt="Product 2">
+      <h3>Product 2</h3>
+      <p>$29.99</p>
+      <button>Add to Cart</button>
+    </div>
+    <!-- Add more products -->
+  </section>
+
+  <section class="contact" id="contact">
+    <h2>Contact Us</h2>
+    <form>
+      <input type="text" placeholder="Your Name" required />
+      <input type="email" placeholder="Your Email" required />
+      <textarea rows="5" placeholder="Your Message" required></textarea>
+      <button type="submit">Send</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Blue Star. All rights reserved.</p>
+  </footer>
+
+  <!-- Modal for Login -->
+  <div id="login" class="modal">
+    <div class="modal-content">
+      <h3>Login</h3>
+      <input type="email" placeholder="Email" />
+      <input type="password" placeholder="Password" />
+      <button>Login</button>
+      <p><a href="#" onclick="closeModal('login')">Close</a></p>
+    </div>
+  </div>
+
+  <!-- Modal for Register -->
+  <div id="register" class="modal">
+    <div class="modal-content">
+      <h3>Register</h3>
+      <input type="text" placeholder="Name" />
+      <input type="email" placeholder="Email" />
+      <input type="password" placeholder="Password" />
+      <button>Register</button>
+      <p><a href="#" onclick="closeModal('register')">Close</a></p>
+    </div>
+  </div>
+
+  <script>
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark-mode');
+    }
+
+    function openModal(id) {
+      document.getElementById(id).style.display = 'flex';
+    }
+
+    function closeModal(id) {
+      document.getElementById(id).style.display = 'none';
+    }
+
+    // Optional: Automatically close modals when clicking outside
+    window.onclick = function(event) {
+      if (event.target.classList.contains('modal')) {
+        event.target.style.display = "none";
+      }
+    }
+  </script>
+
+</body>
+</html>
